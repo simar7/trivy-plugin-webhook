@@ -41,5 +41,7 @@ for opt in "$@"; do
   esac
 done
 
-curl -H 'Content-Type: application/json' -d "$(scan "$@")" localhost:8082
+RESULTS="$(scan "$@")"
+echo $RESULTS
+curl -s -m 1 -H 'Content-Type: application/json' -d $RESULTS localhost:8082
 
