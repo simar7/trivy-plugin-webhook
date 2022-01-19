@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# Usage
+function usage() {
+  cat << EOS >&2
+Usage: trivy webhook [-h,--help] TYPE NAME [TRIVY OPTION]
+ A Trivy plugin that trivy reports to a webhook.
+
+Options:
+  -h, --help    Show usage.
+
+Examples:
+  trivy webhook <trivy args...>
+EOS
+  exit
+}
+
+function scan {
+  trivy --quiet image --format=json $@
+}
+
+if [[ ($# -eq 0) || ($1 == "--help") || ($1 == "-h") ]]; then
+  # No commands or the --help flag passed and we'll show the usage instructions
+  usage
+fi
+
+webhook_PARAM=()
+for opt in "$@"; do
+  case "${opt}" in
+    '--' )
+      shift
+      TRIVY_PARAM=( "$@" )
+      break
+      ;;
+    * )
+      if [ -n "$1" ]; then
+        webhook_PARAM+=("$1")
+      fi
+      shift
+      ;;
+  esac
+done
+
+curl -H 'Content-Type: application/json' -d "$(scan "$@")" localhost:8082
+

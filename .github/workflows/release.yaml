@@ -12,11 +12,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Compress
-        run: tar -zcvf trivy-kubectl.tar.gz trivy-kubectl LICENSE
+        run: tar -zcvf trivy-webhook.tar.gz trivy-webhook LICENSE
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            trivy-kubectl.tar.gz
+            trivy-webhook.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
