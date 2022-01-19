@@ -1,6 +1,6 @@
 name: "webhook"
 repository: github.com/simar7/trivy-plugin-webhook
-version: "0.2.5"
+version: "0.2.6"
 usage: send trivy results to a webhook
 description: |-
   A Trivy plugin that sends trivy results to a webhook. 
@@ -14,7 +14,7 @@ platforms:
   - selector: # optional
       os: linux
       arch: amd64
-    uri: https://github.com/simar7/trivy-plugin-webhook/releases/download/v0.2.5/trivy-webhook.tar.gz
+    uri: https://github.com/simar7/trivy-plugin-webhook/releases/download/v0.2.6/trivy-webhook.tar.gz
     bin: ./trivy-webhook
   - selector:
       os: darwin
