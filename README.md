@@ -1,6 +1,8 @@
 # trivy-plugin-webhook
 A [Trivy](https://github.com/aquasecurity/trivy) plugin that scans the images of a kubernetes resource
 
+# This plugin has been retired in the favour of: https://github.com/aquasecurity/trivy-plugin-webhook
+
 ## Install
 
 ```
